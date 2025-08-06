@@ -4,11 +4,18 @@ function add(numbers) {
   let delimiterRegex = /,|\n/;
 
   if (numbers.startsWith("//")) {
-    const match = numbers.match(/^\/\/(.)\n(.*)/);
-    if (match) {
-      const [, customDelim, rest] = match;
-      delimiterRegex = new RegExp(customDelim);
-      numbers = rest;
+    const delimiterSectionEnd = numbers.indexOf('\n');
+    const delimiterSection = numbers.substring(2, delimiterSectionEnd);
+    numbers = numbers.substring(delimiterSectionEnd + 1);
+
+    const delimiterMatches = delimiterSection.match(/\[([^\]]+)\]/g);
+    if (delimiterMatches) {
+      const delimiters = delimiterMatches.map(d => d.slice(1, -1));
+
+      const escapedDelimiters = delimiters.map(d => d.replace(/[-[\]/{}()*+?.\\^$|]/g, '\\$&'));
+      delimiterRegex = new RegExp(escapedDelimiters.join('|'));
+    } else {
+      delimiterRegex = new RegExp(delimiterSection);
     }
   }
 
