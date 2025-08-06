@@ -32,3 +32,11 @@ test('supports custom delimiters defined at the start having 3 numbers', () => {
   expect(add("//;\n1;2;5")).toBe(8);
 });
 
+test('throws exception on negative numbers', () => {
+  expect(() => add("1,-2,3,-4")).toThrow("negative numbers not allowed: -2,-4");
+});
+
+test('throws exception on multiple negative numbers', () => {
+  expect(() => add("1,-2,3,-4,-5")).toThrow("negative numbers not allowed: -2,-4,-5");
+});
+
