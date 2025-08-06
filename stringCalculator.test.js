@@ -15,3 +15,11 @@ test('returns 6 for a string with value (1,5)', () => {
 test('returns the sum of multiple comma-separated numbers', () => {
   expect(add("1,2,3,4")).toBe(10);
 });
+
+test('handles new lines between numbers having 1 new line character', () => {
+  expect(add("1\n2,3")).toBe(6);
+});
+
+test('handles new lines between numbers having 2 new line character', () => {
+  expect(add("1\n2,3\n 4")).toBe(10);
+});
