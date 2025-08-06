@@ -9,5 +9,5 @@ test('returns 1 for a string with value 1', () => {
 });
 
 test('returns 6 for a string with value (1,5)', () => {
-  expect(add("1,5")).toBe(0);
+  expect(add("1,5")).toBe(6);
 });
