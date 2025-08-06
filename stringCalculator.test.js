@@ -11,3 +11,7 @@ test('returns 1 for a string with value 1', () => {
 test('returns 6 for a string with value (1,5)', () => {
   expect(add("1,5")).toBe(6);
 });
+
+test('returns the sum of multiple comma-separated numbers', () => {
+  expect(add("1,2,3,4")).toBe(10);
+});
