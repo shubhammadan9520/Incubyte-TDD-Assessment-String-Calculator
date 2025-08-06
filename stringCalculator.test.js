@@ -23,3 +23,12 @@ test('handles new lines between numbers having 1 new line character', () => {
 test('handles new lines between numbers having 2 new line character', () => {
   expect(add("1\n2,3\n 4")).toBe(10);
 });
+
+test('supports custom delimiters defined at the start having 2 numbers', () => {
+  expect(add("//;\n1;2")).toBe(3);
+});
+
+test('supports custom delimiters defined at the start having 3 numbers', () => {
+  expect(add("//;\n1;2;5")).toBe(8);
+});
+
